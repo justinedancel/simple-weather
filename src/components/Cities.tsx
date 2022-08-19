@@ -1,15 +1,30 @@
 import React, { Component } from "react";
-import { IState as IProps, ICity } from "../App";
+import { IState as Props, ICity } from "../App";
+
+interface IProps {
+    cities: Props["cities"],
+    selectedCityName: Props["selectedCityName"],
+    handleChangeSelectedCityName: (newSelectedCityName: string) => void
+}
 
 class Cities extends Component<IProps> {
+
+    handleClickCity = (e: any): void => {
+        const newCitySelected: string = e.target.textContent
+        this.props.handleChangeSelectedCityName(newCitySelected)
+    }
 
     renderCities = (): JSX.Element[] => {
         const cities: ICity[] = this.props.cities;
 
         return cities.map((city) => (
-            <div className="city-list-item" key={city.name}>
+            <button
+                onClick={(e) => this.handleClickCity(e)}
+                className="city-list-item"
+                key={city.name}
+            >
                 {city.name}
-            </div>
+            </button>
         ))
     }
 
@@ -24,7 +39,7 @@ class Cities extends Component<IProps> {
                 <div className="weather-today">
                     <p>{selectedCityObj?.days[0].name}</p>
                     <p>{selectedCityObj?.days[0].weather}</p>
-                    <p>{selectedCityObj?.days[0].temperature}°</p>
+                    <p>{selectedCityObj?.days[0].temperature}°C</p>
                 </div>
                 <div className="weather-future">
                     {selectedCityObj?.days && selectedCityObj.days.filter(day => day.name !== "Today").map((day) => (

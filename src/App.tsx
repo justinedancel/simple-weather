@@ -24,7 +24,7 @@ export interface IDay {
     weather: string,
 }
 
-class App extends Component {
+class App extends Component<{}, IState> {
     state: IState = {
         cities: [
             {
@@ -58,8 +58,8 @@ class App extends Component {
 
         // Check if the selected city's days array is already populated
         if (selectedCityObj && !selectedCityObj.days) {
-            // Get today's weather
-            await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=49.8954&lon=-97.1385&appid=${APIKey}&units=metric`)
+            // Query today's weather
+            await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${selectedCityObj.lat}&lon=${selectedCityObj.lon}&appid=${APIKey}&units=metric`)
                 .then(res => res.json())
                 .then(
                     (result) => {
@@ -75,8 +75,8 @@ class App extends Component {
                     }
                 )
 
-            // Get forecast at noon time for the next 4 days
-            await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=49.8954&lon=-97.1385&appid=${APIKey}&units=metric&cnt=32`)
+            // Query forecast for the next 4 days
+            await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${selectedCityObj.lat}&lon=${selectedCityObj.lon}&appid=${APIKey}&units=metric&cnt=32`)
                 .then(res => res.json())
                 .then(
                     (result) => {
@@ -126,12 +126,18 @@ class App extends Component {
         }
     }
 
+    handleChangeSelectedCityName = (newSelectedCityName: string): void => {
+        this.setState({
+            selectedCityName: newSelectedCityName
+        }, () => this.handleGetCityWeather())
+    }
+
     render() {
         const { cities, selectedCityName } = this.state;
 
         return (
             <div className="App">
-                <Cities cities={cities} selectedCityName={selectedCityName} />
+                <Cities cities={cities} selectedCityName={selectedCityName} handleChangeSelectedCityName={this.handleChangeSelectedCityName} />
             </div>
         );
     }
