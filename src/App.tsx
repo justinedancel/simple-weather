@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Cities from './components/Cities';
+import CityWeather from './components/CityWeather';
 
 const APIKey = "744ff036ba40afa6f68e609fddac30b8"
 
@@ -138,6 +139,7 @@ class App extends Component<{}, IState> {
         return (
             <div className="App">
                 <Cities cities={cities} selectedCityName={selectedCityName} handleChangeSelectedCityName={this.handleChangeSelectedCityName} />
+                <CityWeather cities={cities} selectedCityName={selectedCityName} handleChangeSelectedCityName={this.handleChangeSelectedCityName} />
             </div>
         );
     }
