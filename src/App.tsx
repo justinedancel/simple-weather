@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.less';
 import Cities from './components/Cities';
 import CityWeather from './components/CityWeather';
 

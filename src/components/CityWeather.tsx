@@ -47,7 +47,7 @@ class CityWeather extends Component<IProps> {
                 <div className="weather-today">
                     <h3 className="weather-today-name">{selectedCityObj.days[0].name}</h3>
                     <div className="weather-today-display">
-                        <i className={`weather-today-icon fa-solid ${this.getIcon(selectedCityObj.days[0].weather)}`} />
+                        <i className={`weather-today-icon fa-solid fa-fw ${this.getIcon(selectedCityObj.days[0].weather)}`} />
                         <div className="weather-today-text">
                             <h2 className="weather-today-temperature">{selectedCityObj.days[0].temperature}°</h2>
                             <h3 className="weather-today-weather">{selectedCityObj.days[0].weather}</h3>
@@ -58,7 +58,7 @@ class CityWeather extends Component<IProps> {
                     {selectedCityObj?.days && selectedCityObj.days.filter(day => day.name !== "Today").map((day) => (
                         <div className="weather-forecast-item" key={day.name}>
                             <p className="weather-forecast-name">{day.name.substring(0, 3)}</p>
-                            <i className={`weather-forecast-icon fa-solid ${this.getIcon(day.weather)}`} />
+                            <i className={`weather-forecast-icon fa-solid fa-fw ${this.getIcon(day.weather)}`} />
                             <h5 className="weather-forecast-temperature">{day.temperature}°</h5>
                         </div>
                     ))}

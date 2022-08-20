@@ -1,0 +1,113 @@
+@primary_font_color: #333339;
+@selected_city_font_color: #5fb0e8;
+
+@primary_background_color: #eef6fb;
+
+.App {
+	text-align: center;
+	color: @primary_font_color;
+}
+.Cities {
+	margin: 2em auto;
+	width: 40%;
+	display: flex;
+	justify-content: space-around;
+	gap: 10px;
+	.city-list-item {
+		list-style: none;
+		width: 50rem;
+		text-transform: uppercase;
+		font-size: 2em;
+		cursor: pointer;
+		transition: .2s;
+		&:hover {
+			color: @selected_city_font_color;
+		}
+	}
+	.selected-city {
+		font-weight: bold;
+		color: @selected_city_font_color;
+	}
+}
+.City-Weather {
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	margin: 20px auto;
+	padding: 6px;
+	width: 45%;
+	max-width: 1290px;
+	gap: 6px;
+	border-radius: 1em;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 18px 4px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+	.weather-today {
+		background-color: @primary_background_color;
+		border-radius: 0.75em 0.75em 0 0;
+		letter-spacing: 0.05em;
+		font-size: large;
+		padding: 3.5em 3.5em 4em;
+		overflow: hidden;
+		.weather-today-name {
+			margin: 0 0 1em;
+			font-size: 2em;
+			font-weight: 300;
+		}
+		.weather-today-display {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			align-content: center;
+			gap: 1em;
+			.weather-today-icon {
+				font-size: 8em;
+			}
+			.weather-today-text {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				.weather-today-temperature {
+					font-weight: normal;
+					font-size: 5em;
+					font-stretch: condensed;
+					letter-spacing: 0;
+					margin: 0;
+				}
+				.weather-today-weather {
+					font-size: 2em;
+					font-weight: 300;
+					margin: 0;
+				}
+			}
+		}
+	}
+}
+.weather-forecast {
+	display: flex;
+	gap: 6px;
+	flex-wrap: nowrap;
+	overflow: hidden;
+	border-radius: 0 0 0.75em 0.75em;
+	.weather-forecast-item {
+		background-color: @primary_background_color;
+		flex-grow: 1;
+		padding: 1.25em 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.25em;
+		.weather-forecast-name {
+			margin: 0;
+			font-size: 1.5em;
+			font-weight: 300;
+		}
+		.weather-forecast-icon {
+			font-size: 3.5em;
+		}
+		.weather-forecast-temperature {
+			font-weight: normal;
+			font-size: 2.5em;
+			margin: 0;
+		}
+	}
+}
